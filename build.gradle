@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.test'
+version '1.0-SNAPSHOT'
+
+mainClassName = "com.test.webtalk.Application"
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    slf4jVersion = '1.7.21'
+    log4j2Version = '2.5'
+    vertxVersion = '3.5.1'
+}
+
+dependencies {
+    implementation group: 'io.vertx', name: 'vertx-core', version: "${vertxVersion}"
+    implementation "io.vertx:vertx-web:${vertxVersion}"
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    implementation group: 'com.google.guava', name: 'guava', version: '24.0-jre'
+
+    compile("org.slf4j:slf4j-api:${slf4jVersion}")
+    compile("org.apache.logging.log4j:log4j-api:${log4j2Version}")
+    compile("org.apache.logging.log4j:log4j-core:${log4j2Version}")
+    compile("org.apache.logging.log4j:log4j-slf4j-impl:${log4j2Version}")
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.+'
+}
