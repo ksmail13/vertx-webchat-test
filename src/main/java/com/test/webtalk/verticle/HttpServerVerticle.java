@@ -12,8 +12,6 @@ import java.nio.charset.Charset;
 
 public class HttpServerVerticle extends AbstractVerticle {
 
-
-
     @Override
     public void start() throws Exception {
         HttpServer httpServer = vertx.createHttpServer();
@@ -32,7 +30,6 @@ public class HttpServerVerticle extends AbstractVerticle {
         router.route().handler(LoggerHandler.create());
         router.route("/talk/*").handler(sockJSHandler);
         router.route("/static/*").handler(StaticHandler.create());
-        router.route("/static/*").handler(StaticHandler.create("lib"));
         router.route("/")
                 .handler(req-> req.response().end(vertx.fileSystem().readFileBlocking("webroot/html/index.html").toString(Charset.forName("UTF-8"))));
 
